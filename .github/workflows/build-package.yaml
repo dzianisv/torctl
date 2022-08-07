@@ -17,7 +17,7 @@ jobs:
         run: ./package.sh
 
       - name: Install Package
-        run: sudo apt install -yq ./*.deb
+        run: sudo apt-get install -yq ./*.deb
 
       - name: Test
         run: |
