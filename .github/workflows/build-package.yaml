@@ -4,6 +4,8 @@ on: [push, release]
 jobs:
   Build-Release-Package:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
