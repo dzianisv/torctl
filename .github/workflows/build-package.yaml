@@ -16,6 +16,14 @@ jobs:
       - name: Build Package
         run: ./package.sh
 
+      - name: Install Package
+        run: sudo apt install -yq ./*.deb
+
+      - name: Test
+        run: |
+          torctl start
+          torctl stop
+
       - name: Publish Package
         run: |
           if [ ${{ github.event_name }} = "release" ]; then
