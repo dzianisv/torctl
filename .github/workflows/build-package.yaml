@@ -1,0 +1,14 @@
+name: Build Package
+on: [release]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - run: sudo ./install-dev-requirements.sh
+      - run: ./package.sh
+      - run: |
+          RELEASE_VERSION_NAME="${GITHUB_REF/refs\/tags\//}"
+          hub release edit -m "" -a *.deb "${RELEASE_VERSION_NAME}"
+        
