@@ -10,9 +10,7 @@ jobs:
       - run: sudo ./install-dev-requirements.sh
       - run: ./package.sh
       - run: |
-          RELEASE_VERSION_NAME="${GITHUB_REF/refs\/tags\//}"
-          hub release edit -m "" -a *.deb "${RELEASE_VERSION_NAME}"
-        on:
-          release:
-            types:
-              - published
+          if [ ${{ github.event_name }} = "release" ]; then
+            RELEASE_VERSION_NAME="${GITHUB_REF/refs\/tags\//}"
+            hub release edit -m "" -a *.deb "${RELEASE_VERSION_NAME}"
+          fi
