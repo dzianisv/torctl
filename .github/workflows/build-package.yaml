@@ -17,7 +17,11 @@ jobs:
         run: ./package.sh
 
       - name: Install Package
-        run: sudo apt-get install -yq ./*.deb
+        run: |
+          for f in *.deb; do
+            echo "${f}"
+            sudo apt-get install -yq "./${f}"
+          done
 
       - name: Test
         run: |
