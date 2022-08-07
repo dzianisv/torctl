@@ -7,9 +7,15 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
-      - run: sudo ./install-dev-requirements.sh
-      - run: ./package.sh
-      - run: |
+      
+      - name: Install Dev depedencies
+        run: sudo ./install-dev-requirements.sh
+
+      - name: Build Package
+        run: ./package.sh
+
+      - name: Publish Package
+        run: |
           if [ ${{ github.event_name }} = "release" ]; then
             RELEASE_VERSION_NAME="${GITHUB_REF/refs\/tags\//}"
             hub release edit -m "" -a *.deb "${RELEASE_VERSION_NAME}"
