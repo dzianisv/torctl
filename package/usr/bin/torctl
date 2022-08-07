@@ -527,7 +527,7 @@ status() {
 
     AUTOWIPESTATUS=$(systemctl is-enabled torctl-autowipe)
 
-    AUTOSTARTSTATUS=$(systemctl is-enabled torctl-autostart)
+    AUTOSTARTSTATUS=$(systemctl is-enabled torctl)
 
     if is_started; then
         msg "torctl is started"
@@ -562,7 +562,7 @@ autowipe() {
 
 autostart() {
     warn "enabling torctl-autostart"
-    systemctl enable torctl-autostart &>"/dev/null"
+    systemctl enable torctl &>"/dev/null"
     msg "enabled torctl-autostart"
 }
 
