@@ -1,7 +1,8 @@
 name: Build Package
-on: [release]
+on: [push, release]
+
 jobs:
-  Explore-GitHub-Actions:
+  Build-Release-Package:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
@@ -11,4 +12,7 @@ jobs:
       - run: |
           RELEASE_VERSION_NAME="${GITHUB_REF/refs\/tags\//}"
           hub release edit -m "" -a *.deb "${RELEASE_VERSION_NAME}"
-        
+        on:
+          release:
+            types:
+              - published
