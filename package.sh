@@ -1,6 +1,7 @@
 #!/bin/sh
 set -eu
-tag=$(git describe --tags)
+
+tag=$(git describe --tags || echo "0.0.0")
 version=${tag%%-*}
 
 for type in deb "$@"; do

@@ -25,8 +25,8 @@ jobs:
 
       - name: Test
         run: |
-          torctl start
-          torctl stop
+          sudo torctl start
+          sudo torctl stop
 
       - name: Publish Package
         run: |
