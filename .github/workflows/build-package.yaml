@@ -1,5 +1,9 @@
 name: Build Package
-on: [push, release]
+on:
+  release:
+    types:
+      - published
+  push:
 
 jobs:
   Build-Release-Package:
